@@ -1,0 +1,7 @@
+root@harbo107:/httpserver# docker push jackchengweihua/httpserver:v1.1
+The push refers to repository [docker.io/jackchengweihua/httpserver]
+cd087b2e21ab: Pushed 
+6dcaef146ef9: Pushed 
+47a6216afd9b: Pushed 
+e2eb06d8af82: Pushed 
+v1.1: digest: sha256:a8047c628d609d74ee08578d86cbdd5452ea887b9d4a8d1d7a12e1f331374aa0 size: 1158
