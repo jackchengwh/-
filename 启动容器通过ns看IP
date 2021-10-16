@@ -1,0 +1,22 @@
+1、启动容器
+docker run -it --rm -p 80:80 httpserver:v1.1
+2、nsenter 进入容器查看 IP 配置
+lsns 查看httpserver进程PID
+        NS TYPE   NPROCS   PID USER             COMMAND
+
+4026532227 mnt         1  2664 ubuntu           /httpserver
+4026532228 uts         1  2664 ubuntu           /httpserver
+4026532229 ipc         1  2664 ubuntu           /httpserver
+4026532230 pid         1  2664 ubuntu           /httpserver
+4026532232 net         1  2664 ubuntu           /httpserver
+
+nsenter 查看
+root@harbo107:~# nsenter -t2664 -n ip add
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+27: eth0@if28: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
