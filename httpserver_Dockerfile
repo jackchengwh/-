@@ -1,0 +1,10 @@
+FROM alpine:curl
+LABEL make="jack"
+LABEL version="1.1"
+RUN adduser -Ds /bin/sh web 
+copy --chown=web:web ./httpserver /httpserver
+USER web
+EXPOSE 80
+HEALTHCHECK --interval=5s --timeout=3s \
+CMD curl -fs http://127.0.0.1/ || exit 1
+ENTRYPOINT /httpserver
